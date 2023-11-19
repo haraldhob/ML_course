@@ -15,10 +15,6 @@ Before starting, ensure the following libraries are installed:
 - scikit-learn
 - scikit-image
 
-Use the following command for installation:
-```python
-pip install tensorflow keras numpy pandas matplotlib opencv-python scipy scikit-learn scikit-image
-
 # Usage
 ## Data Preparation
 The data preparation phase involves loading satellite images and their corresponding ground truth labels. Functions are provided for loading images, converting image formats, concatenating images with their labels, and cropping images into patches.
