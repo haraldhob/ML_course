@@ -1,32 +1,47 @@
-# Project Road Segmentation
+# Road Segmentation from Satellite Images using CNN
 
-For this choice of project task, we provide a set of satellite images acquired 
-from GoogleMaps. We also provide ground-truth images where each pixel is labeled 
-as road or background. 
+## Project Overview
+This project is centered on the segmentation of roads in satellite images using Convolutional Neural Networks (CNNs), particularly the U-Net architecture. The objective is to classify each pixel in the images as either road or background, leveraging deep learning techniques for accurate segmentation.
 
-Your task is to train a classifier to segment roads in these images, i.e. 
-assigns a label `road=1, background=0` to each pixel.
+## Installation
+Before starting, ensure the following libraries are installed:
+- TensorFlow
+- Keras
+- NumPy
+- Pandas
+- Matplotlib
+- OpenCV
+- SciPy
+- scikit-learn
+- scikit-image
 
-Submission system environment setup:
+Use the following command for installation:
+```python
+pip install tensorflow keras numpy pandas matplotlib opencv-python scipy scikit-learn scikit-image
 
-1. The dataset is available from the 
-[AICrowd page](https://www.aicrowd.com/challenges/epfl-ml-road-segmentation).
+# Usage
+## Data Preparation
+The data preparation phase involves loading satellite images and their corresponding ground truth labels. Functions are provided for loading images, converting image formats, concatenating images with their labels, and cropping images into patches.
 
-2. Obtain the python notebook `segment_aerial_images.ipynb` from this github 
-folder, to see example code on how to extract the images as well as 
-corresponding labels of each pixel.
+## Display Functions
+Several functions are included for displaying images and overlays, such as overlaying predictions on the original images for visual comparison.
 
-The notebook shows how to use `scikit learn` to generate features from each 
-pixel, and finally train a linear classifier to predict whether each pixel is 
-road or background. Or you can use your own code as well. Our example code here 
-also provides helper functions to visualize the images, labels and predictions. 
-In particular, the two functions `mask_to_submission.py` and 
-`submission_to_mask.py` help you to convert from the submission format to a 
-visualization, and vice versa.
+## Data Augmentation and Preprocessing
+The project includes comprehensive data augmentation and preprocessing capabilities:
+- Elastic deformation of images
+- Random cropping and padding
+- Resizing and padding images and masks
+- Color augmentation
+- Generating augmented datasets
 
-3. As a more advanced approach, try `tf_aerial_images.py`, which demonstrates 
-the use of a basic convolutional neural network in TensorFlow for the same 
-prediction task.
+## Model Building
+A U-Net model is built for the task. The build_unet function allows for customizable parameters, including depth, dropout rates, and activation functions. The model's architecture is designed to effectively capture the spatial hierarchies in satellite images.
 
-Evaluation Metric:
- [F1 score](https://en.wikipedia.org/wiki/F1_score)
+## Training and Validation
+The project includes functionalities for training the U-Net model with the augmented dataset. It covers normalizing the training and test sets, converting ground truth to binary format, and defining class weights for balancing. The training process is monitored using callbacks like EarlyStopping and TensorBoard.
+
+## Evaluation
+Evaluate the model's performance on a validation set using metrics like the F1 score. Functions are provided for applying different thresholds to the model's predictions to optimize the F1 score.
+
+## Prediction
+The project includes functions for making predictions on test images, converting these predictions into segmented outputs, and displaying them.
